@@ -1,0 +1,66 @@
+<ul>
+    {% for animal in animals: %}
+        <li>{{ animal }}</li>
+    {% endfor %}
+</ul><!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Classificação baseada na pegada</title>
+    <link rel="stylesheet" type="text/css" href="./static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+</head>
+<body>
+    <section class="load-page" id="load-page">
+        <lottie-player src="./static/images/load-paw.json" background="transparent" speed="1" style="width: 300px; height: 300px" loop autoplay></lottie-player>
+        <h1>Aguarde...</h1>
+    </section>
+
+    <section class="upload-page" id="upload-page">
+        <div class="container">
+            <form id="image-upload-form" action="/" method="post" enctype="multipart/form-data">
+                <div class="title">Envie a imagem de uma pegada</div>
+                <div class="preview">
+                    <img src="" alt="" id="preview-img">
+                    <div class="load-image-upload"></div>
+                    <i class="fas fa-solid fa-times close" onclick="closeIt()"></i>
+                </div>
+                <div class="btn" id="upload-image">
+                    <input type="file" name="upload-file" id="image" accept=".jpg, .jpeg, .png"/>
+                    <label for="image">Selecionar imagem</label>
+                </div>
+                <div class="btn" id="send-image" style="display: none;" onclick="showPage('result');">
+                    <input type="submit" name="send-file">
+                    <label for="send-image">Analisar pegada</label>
+                </div>
+            </form>
+        </div>
+    </section>
+    
+    <section class="result-page" id="result-page">
+        <div class="predictions-card">
+            <div class="predictions-card-image">
+                <img alt="animal" />
+            </div>
+
+            <h1>Analisamos a pegada enviada e...</h1>
+            <p class="description"></p>
+
+            <div class="btn-pred" id="view-details">
+                <input type="submit" name="view-details">
+                <label for="view-details">Ver detalhes do animal</label>
+            </div>
+            <div class="btn-pred-alt" id="new-analisis" onclick="showPage('upload')">
+                <input type="submit" name="new-analisis">
+                <label for="new-analisis">Fazer nova análise</label>
+            </div>
+        </div>
+    </section>
+
+    <script src="./static/js/app.js"></script>
+</body>
+</html>
